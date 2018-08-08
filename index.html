@@ -1,0 +1,132 @@
+<!DOCTYPE xhtml>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Final Exam Preview</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <div id="mainContainer">
+            <div id="menu">
+                <a href="#">Начало</a>
+                <a href="#">Галерия</a>
+                <a href="#">FAQ</a>
+                <a href="#">За нас</a>
+                <a href="#">Край</a>
+            </div>
+            <div id="main">
+            <div id="innerContainer">
+                <div id="quoteContainer">
+                    
+                    <div id="quotes" >
+                        <blockquote id="quote">
+                        </blockquote>
+                        <span id="author">
+                        </span>
+                    </div>                            
+                    <div id="buttCenter">
+                        <button onclick="prev();" name="Previous">Previous</button>
+                        <button onclick="addNew();" name="Add new">Add New</button>
+                        <button onclick="next();" name="Next">Next</button>
+                    </div>                            
+                </div>
+                <div id="Title">
+                    <p>Размисли разни</p>
+                </div>
+                <div id="perInfo">
+                    <p>Лична информация</p>
+                </div>
+                <fieldset>
+                    <legend>Лични данни</legend>
+                    <form action="http://Enevsoft.net/echo.php" method="post" enctype="multipart/form-data" target="_blank">
+                        Трите имена*:
+                        <input type="text" name="Name" required="required" placeholder="Иван Иванов Иванов" /><br />
+                        <span>
+                            Пол:
+                            <label><input type="radio" name="sex" value="Male" />Мъж</label>
+                            <label><input type="radio" name="sex" value="Secret" checked="checked" />Не казвам</label>
+                            <label><input type="radio" name="sex" value="Female" />Жена</label><br />
+                        </span>
+                        Дата на раждане:
+                        <input type="text" name="Date" placeholder="dd/mm/yyyy" /><br />
+                        Роден град:
+                        <select name="City">
+                            <option value="Майнатаун">Майнатаун</option>
+                            <option value="Русе">Русе</option>
+                            <option value="София">София</option>
+                            <option value="Бургас">Бургас</option>
+                        </select><br />
+                        <span>
+                        Говорими езици:
+                        <label>Български език<input type="checkbox" name="lang[1]" value="BG" /></label>
+                        <label>Англиски език<input type="checkbox" name="lang[2]" value="EN" /></label>
+                        <label>Френски език<input type="checkbox" name="lang[3]" value="JP" /></label>
+                        </span>
+                        <br />
+                        Телефон:
+                        <input type="tel" name="phoneNumber" maxlength="10" placeholder="0888888888" />
+                        <br />
+                        <textarea id="textArea" name="textArea" required="required" placeholder="Моля, напишете нещо за себе си, не си споделяме..."></textarea>
+                        <br>
+                        <input type="submit" id="buttSubmit" name="Submit" value="Submit" />
+                        <input type="reset" id="buttReset" name="Reset" value="Reset" />
+                    </form>
+                </fieldset>
+                <div id="imgDiv">
+                    <img src="believe.jpg" alt="This image can not be loaded" />
+                </div>
+            </div>
+            </div>
+            <div id="footer">
+                <span>
+                    &copy; 	Miroslav Smokov. All Rights Reserved
+                    <a href="http://www.google.com" id="waRight">Google</a>
+                </span>
+            </div>
+        </div>
+        <script>
+            var quote=["Не живей в миналото, не мечтай за бъдещето, концентрирай се върху настоящия момент!"];
+            document.getElementById("quote").innerHTML = quote;
+            var author=["Буда(Сидхарта Гаутама)"];
+            document.getElementById("author").innerHTML = author;
+            var index = 0;
+
+            function prev(){
+                if(index > 0){
+                    index--;
+                }else if(index == 0){
+                    alert('This is the first quote.');
+                }
+
+                document.getElementById("quote").innerHTML = quote[index];
+                document.getElementById("author").innerHTML = author[index];
+            }
+
+            function next(){
+                if(index < quote.length - 1){
+                    index++;
+                }else if(index == quote.length -1){
+                    alert('This is the last quote.');
+                }
+
+                document.getElementById("quote").innerHTML = quote[index];
+                document.getElementById("author").innerHTML = author[index];
+            }
+
+            function addNew(){
+                var newQuote = prompt('Добави нов цитат');
+                var newAuthor = prompt('Добави името на автора');
+
+                if(newQuote == "" || newAuthor == ""){
+                    alert('Quote or Author cannot be empty');
+                }else{
+                    quote.push(newQuote);
+                    author.push(newAuthor);
+                    //document.getElementById("quote").innerHTML = quote[0];
+                    //document.getElementById("author").innerHTML = author[0];
+                }
+            }
+        </script>
+    </body>
+</html>
